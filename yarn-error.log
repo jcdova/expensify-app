@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\J\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add --dev cross-env@5.0.5
+  C:\Program Files\nodejs\node.exe C:\Users\J\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js upgrade --latest
 
 PATH: 
   C:\Users\J\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\J\bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x86;C:\Program Files (x86)\Intel\OpenCL SDK\3.0\bin\x64;C:\Program Files (x86)\Windows Live\Shared;C:\Program Files (x86)\QuickTime\QTSystem;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn;C:\Program Files\Microsoft SQL Server\120\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn;C:\Program Files\Microsoft SQL Server\120\DTS\Binn;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\3.4\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\J\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Heroku\bin;C:\Users\J\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -24,7 +24,7 @@ npm manifest:
       "build:dev": "webpack",
       "build:prod": "webpack -p --env production",
       "dev-server": "webpack-dev-server",
-      "test": "jest --config=jest.config.json",
+      "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
       "start": "node server/server.js",
       "heroku-postbuild": "yarn run build:prod"
     },
@@ -37,10 +37,10 @@ npm manifest:
       "babel-preset-env": "1.5.2",
       "babel-preset-react": "6.24.1",
       "css-loader": "0.28.4",
-      "enzyme-adapter-react-16": "1.0.0",
       "express": "4.15.4",
       "extract-text-webpack-plugin": "3.0.0",
       "firebase": "^4.8.2",
+      "history": "^4.7.2",
       "moment": "2.18.1",
       "node-sass": "4.5.3",
       "normalize.css": "7.0.0",
@@ -63,7 +63,10 @@ npm manifest:
       "webpack": "3.1.0"
     },
     "devDependencies": {
+      "cross-env": "^5.1.3",
+      "dotenv": "^4.0.0",
       "enzyme": "3.0.0",
+      "enzyme-adapter-react-16": "1.0.0",
       "enzyme-to-json": "3.0.1",
       "jest": "20.0.4",
       "react-test-renderer": "16.0.0",
@@ -1639,11 +1642,26 @@ Lockfile:
       loose-envify "^1.3.1"
       object-assign "^4.1.1"
   
+  cross-env@^5.1.3:
+    version "5.1.3"
+    resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.1.3.tgz#f8ae18faac87692b0a8b4d2f7000d4ec3a85dfd7"
+    dependencies:
+      cross-spawn "^5.1.0"
+      is-windows "^1.0.0"
+  
   cross-spawn@^3.0.0:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-3.0.1.tgz#1256037ecb9f0c5f79e3d6ef135e30770184b982"
     dependencies:
       lru-cache "^4.0.1"
+      which "^1.2.9"
+  
+  cross-spawn@^5.1.0:
+    version "5.1.0"
+    resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
+    dependencies:
+      lru-cache "^4.0.1"
+      shebang-command "^1.2.0"
       which "^1.2.9"
   
   cryptiles@2.x.x:
@@ -1972,6 +1990,10 @@ Lockfile:
     dependencies:
       dom-serializer "0"
       domelementtype "1"
+  
+  dotenv@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
   
   ecc-jsbn@~0.1.1:
     version "0.1.1"
@@ -3172,6 +3194,10 @@ Lockfile:
   is-utf8@^0.2.0:
     version "0.2.1"
     resolved "https://registry.yarnpkg.com/is-utf8/-/is-utf8-0.2.1.tgz#4b0da1442104d1b336340e80797e865cf39f7d72"
+  
+  is-windows@^1.0.0:
+    version "1.0.1"
+    resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.1.tgz#310db70f742d259a16a369202b51af84233310d9"
   
   isarray@0.0.1:
     version "0.0.1"
@@ -5397,6 +5423,16 @@ Lockfile:
       lazy-cache "^0.2.3"
       mixin-object "^2.0.1"
   
+  shebang-command@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
+    dependencies:
+      shebang-regex "^1.0.0"
+  
+  shebang-regex@^1.0.0:
+    version "1.0.0"
+    resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
+  
   shellwords@^0.1.0:
     version "0.1.1"
     resolved "https://registry.yarnpkg.com/shellwords/-/shellwords-0.1.1.tgz#d6b9181c1a48d397324c84871efbcfc73fc0654b"
@@ -6195,5 +6231,14 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\J\Desktop\expensify-app\node_modules\acorn-dynamic-import\node_modules\.bin'
-      at Error (native)
+  Error: https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000803.tgz: ESOCKETTIMEDOUT
+      at ClientRequest.<anonymous> (C:\Users\J\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:123642:19)
+      at ClientRequest.g (events.js:291:16)
+      at emitNone (events.js:86:13)
+      at ClientRequest.emit (events.js:185:7)
+      at TLSSocket.emitTimeout (_http_client.js:626:10)
+      at TLSSocket.g (events.js:291:16)
+      at emitNone (events.js:86:13)
+      at TLSSocket.emit (events.js:185:7)
+      at TLSSocket.Socket._onTimeout (net.js:339:8)
+      at ontimeout (timers.js:365:14)
